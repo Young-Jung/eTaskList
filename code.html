@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>eTaskList - Local Storage JavaScript Challenge</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+    <link href="/img/list.png" rel="icon">
+    <link href="/img/Apple_Trans_list.png" rel="apple-touch-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/TopNav_SitckyFooter.css">
+    <link rel="stylesheet" href="/css/prismTomorrow.css">
+</head>
+
+<body>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!-- Bootstrap NavBar -->
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/Apple_Trans_list.png" width="30" height="30" class="d-inline-block align-top"
+                        alt="eTaskList Main Icon">
+                    <span class="menu-collapsed">TASK LIST</span>
+                </a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">TASK DASHBOARD </a>
+                    </li>
+                </ul>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto" style="margin-right:150px">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="code.html">See The Code </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/Young-Jung/eTaskList">Get The Code </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://youngjung.netlify.app/">About </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+            <!-- NavBar END -->
+
+
+            <!-- Bootstrap row -->
+            <div class="row">
+                <div class="col py-5"></div>
+            </div>
+            <div class="row" id="body-row">
+
+
+                <!-- MAIN -->
+                <!-- <div class="col py-3"> line 161 -->
+                <div style="padding-top:56px"></div>
+                <!-- MAIN -->
+                <div class="col-lg-2 col-md-1 col-sm-1"></div>
+                <div class="col-lg-8 col-md-10 col-sm-10 py-2 text-left">
+                    <div class="row">
+                        <div class="col">
+                            <section>
+
+                                <h1>Task List: A Coding Challenge</h1>
+                                <strong>The Functions that make Task List.</strong>
+                                <br><br>
+                                <ul class="text-dark">
+                                    <li>Create Task</li>
+                                    <li>Clear Tasks</li>
+                                    <li>Edit Task</li>
+                                    <li>Delete Task</li>
+                                    <li>Display Taks</li>
+                                </ul>
+                                <h6 class="card-text ml-1 mb-3">
+                                    Click the section links below to learn more about the code.
+                                </h6>
+                            </section>
+                            <!-- Collapsible Sections -->
+                            <div class="accordion" id="accordionSuperDogEvents">
+                                <!-- Build Payment Schedule -->
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseBuildDropDown" aria-expanded="true"
+                                                aria-controls="collapseBuildDropDown">
+                                                Create Task
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseBuildDropDown" class="collapse show" aria-labelledby="headingOne"
+                                        data-parent="#accordionSuperDogEvents">
+                                        <div class="card-body">
+                                            <h5>Create Task</h5>
+                                            <!-- <p class="mb-3">
+                                                This function is about create task.
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info">Lines 5</span>
+                                                Get Event Data.
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info">Line 8-17</span>
+                                                Display Dropdown
+                                            </p> -->
+
+
+                                            <!-- Start Code -->
+                                            <pre class="line-numbers"><code class="language-javascript">
+function createTask() {
+    let formData = document.getElementById("newEventForm");
+    let newTaskTitle = formData.newTaskTitle.value;
+    let newDueDate = formData.newDueDate.value;
+    if (newTaskTitle.length > 0) {
+
+        let obj = {
+            id: generateId(),
+            title: newTaskTitle,
+            created: renderToday(),
+            completed: false,
+            duedate: renderDate(newDueDate)
+        };
+
+        let getTasks = getLocalStorage();
+
+        getTasks.push(obj);
+
+        saveTask(getTasks);
+
+        listTasks();
+    }
+}
+</code></pre>
+                                            <!-- End Code -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseGetPayments" aria-expanded="false"
+                                                aria-controls="collapseGetPayments">
+                                                Clear Tasks
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseGetPayments" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordionSuperDogEvents">
+                                        <div class="card-body">
+                                            <h5>Clear Tasks</h5>
+                                            <!-- <p class="mb-3">
+                                                This function is to get event information.
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info">Lines 4</span>
+                                                Get which city the user select.
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info">Line 5 (9-21)</span>
+                                                Display the header part for only the filtered city.
+                                            </p> -->
+
+                                            <!-- Start Code -->
+                                            <pre class="line-numbers"><code class="language-javascript">
+function clearTasks() {
+    localStorage.removeItem('storageTasks');
+    setLocalStorage(new Array());
+    listTasks();
+}
+</code></pre>
+                                            <!-- End Code -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseDisplayStats" aria-expanded="false"
+                                                aria-controls="collapseDisplayStats">
+                                                Edit Task
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseDisplayStats" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordionSuperDogEvents">
+                                        <div class="card-body">
+                                            <h5>Edit Task</h5>
+                                            <!-- <p class="mb-3">
+                                                This function is to display statistics.
+                                            </p> -->
+
+
+                                            <!-- Start Code -->
+                                            <pre class="line-numbers"><code class="language-javascript">
+function editTask() {
+    let formData = document.getElementById("oldEventForm");
+    let oldUUID = formData.oldUUID.value;
+    let newTaskTitle = formData.newTaskTitle.value;
+    let newDueDate = formData.newDueDate.value;
+    let newCompleted = formData.newCompleted.checked;
+    let getTasks = getLocalStorage();
+
+    let obj = getTasks.find(t => {
+        return t.id == oldUUID
+    });
+
+    if (newTaskTitle.length > 0) {
+        obj.title = newTaskTitle;
+    }
+    if (newDueDate.length > 0) {
+        obj.duedate = renderDate(newDueDate);
+    }
+    obj.completed = newCompleted;
+    setLocalStorage(getTasks);
+    listTasks();
+
+}
+
+                                            </code></pre>
+                                            <!-- End Code -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseDisplayData" aria-expanded="false"
+                                                aria-controls="collapseDisplayData">
+                                                Delete Task
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseDisplayData" class="collapse" aria-labelledby="headingFour"
+                                        data-parent="#accordionSuperDogEvents">
+                                        <div class="card-body">
+                                            <h5>Delete Task</h5>
+                                            <!-- <p class="mb-3">
+                                                This function is to display all the events.
+                                            </p> -->
+
+                                            <!-- Start Code -->
+                                            <pre class="line-numbers"><code class="language-javascript">
+function deleteTask(element) {
+    let getTasks = getLocalStorage();
+    let index = getIndex(element);
+    getTasks.splice(index, 1);
+    setLocalStorage(getTasks);
+    listTasks();
+}
+                                            </code></pre>
+                                            <!-- End Code -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseSaveEvent" aria-expanded="false"
+                                                aria-controls="collapseSaveEvent">
+                                                Display Taks
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseSaveEvent" class="collapse" aria-labelledby="headingFive"
+                                        data-parent="#accordionSuperDogEvents">
+                                        <div class="card-body">
+                                            <h5>Display Tasks</h5>
+                                            <!-- <p class="mb-3">
+                                                This function is to save an event that the user entered.
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info">Lines 25-26</span>
+                                                Refresh dropdown list and statistics.
+                                            </p> -->
+
+                                            <!-- Start Code -->
+                                            <pre class="line-numbers"><code class="language-javascript">
+function listTasksByFilter(getTasks) {
+
+    const template = document.getElementById("Data-Template");
+    const resultsBody = document.getElementById("resultsBody");
+    // Clear table first
+    resultsBody.innerHTML = "";
+    if (getTasks != null) {
+        getTasks.forEach(function (getTasks, index) {
+            const dataRow = template.content.cloneNode(true);
+            dataTR = dataRow.querySelectorAll("tr");
+            dataCols = dataRow.querySelectorAll("td");
+            if (getTasks.completed) {
+                dataTR[0].setAttribute("class", "complete"); // completed                
+            } else {
+                dataTR[0].setAttribute("class", ""); // Incompleted                
+            }
+            dataCols[0].textContent = getTasks.id; // task Id
+            dataCols[1].textContent = getTasks.title; // title
+            dataCols[2].textContent = getTasks.created; // created
+            dataCols[3].textContent = getTasks.duedate; // duedate
+            dataCols[4].setAttribute("data-id", getTasks.id); //data-id
+            // Add the row to the page
+            resultsBody.appendChild(dataRow);
+        });
+
+    }
+    getFilteredTaskCount(getTasks) > 0 ? document.getElementById("nTasks").innerText = `(${getFilteredTaskCount(getTasks)})` : document.getElementById("nTasks").innerText = "";
+}
+                                            </code></pre>
+                                            <!-- End Code -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Main Col END -->
+                    <!-- </div> line 66 -->
+                    <!-- Main Col END -->
+
+                </div>
+                <footer id="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6 text-muted">&copy; Young Jung 2021</div>
+                            <div class="col-lg-9 col-md-6 col-sm-6 text-muted"
+                                style="font-size:0.7rem;text-align: right;">
+                                Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a>
+                                from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                                Photo by Suzy Hazelwood from Pexels
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- body-row END -->
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+            </script>
+            <script src="/js/TopNav_StickySide.js"></script>
+            <script src="/js/prismTomorrow.js"></script>
+</body>
+
+</html>

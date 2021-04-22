@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Fixed Top Navbar and Sticky Side Menu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+    <link href="/img/list.png" rel="icon">
+    <link href="/img/Apple_Trans_list.png" rel="apple-touch-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/TopNav_StickySide_SitckyFooter.css">
+</head>
+
+<body>
+    <div style="padding-top:56px"></div>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!-- Bootstrap NavBar -->
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/Apple_Trans_list.png" width="30" height="30" class="d-inline-block align-top"
+                        alt="eTaskList Main Icon">
+                    <span class="menu-collapsed">TASK LIST</span>
+                </a>
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="dashboard.html">TASK DASHBOARD <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto" style="margin-right:150px">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="code.html">See The Code </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/Young-Jung/eTaskList">Get The Code </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://youngjung.netlify.app/">About </a>
+                        </li>
+
+                        <!-- This menu is hidden in bigger devices with d-sm-none. 
+           The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+                        <li class="nav-item dropdown d-sm-block d-md-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Menu
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                                <a class="dropdown-item button" data-toggle="modal" href="#addTask">CREATE TASK</a>
+                                <a class="dropdown-item" href="javascript:void(0)"
+                                    onclick="FilterIncomplete()">Incomplete
+                                    Tasks</a>
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="FilterOverDue()">Overdue
+                                    Tasks</a>
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="FilterCompleted()">Completed
+                                    Tasks</a>
+                            </div>
+                        </li>
+                        <!-- Smaller devices menu END -->
+
+                    </ul>
+                </div>
+            </nav>
+            <!-- NavBar END -->
+
+
+            <!-- Bootstrap row -->
+            <div class="row" id="body-row">
+                <!-- Sidebar -->
+                <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+                    <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+                    <!-- Bootstrap List Group -->
+                    <ul class="list-group sticky-top sticky-offset">
+                        <!-- Separator with title -->
+                        <!-- <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                    <small>MAIN MENU</small>
+                </li> -->
+                        <!-- /END Separator -->
+                        <a data-toggle="modal" href="#addTask" class="bg-dark list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="fa fa-plus fa-fw mr-3"></span>
+                                <span class="menu-collapsed">CREATE TASKS</span>
+                            </div>
+                        </a>
+                        <!-- Menu with submenu -->
+                        <a href="#submenu1" onclick="listTasks()" data-toggle="collapse" aria-expanded="false"
+                            class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span class="fa fa-dashboard fa-fw mr-3"></span>
+                                <span class="menu-collapsed">TASKS BY STATUS</span>
+                                <span class="submenu-icon ml-auto"></span>
+                            </div>
+                        </a>
+                        <!-- Submenu content -->
+                        <div id="submenu1" class="collapse sidebar-submenu">
+                            <a href="javascript:void(0)" onclick="FilterIncomplete()"
+                                class="list-group-item list-group-item-action bg-dark text-white">
+                                <span class="menu-collapsed"><i class="fa fa-1x fa-close" style="color: yellow;">
+                                    </i>
+                                    Incomplete</span>
+                            </a>
+                            <a href="javascript:void(0)" onclick="FilterOverDue()"
+                                class="list-group-item list-group-item-action bg-dark text-white">
+                                <span class="menu-collapsed"><i class="fa fa-1x fa-calendar-times-o"
+                                        style="color: red;">
+                                    </i>
+                                    Overdue</span>
+                            </a>
+                            <a href="javascript:void(0)" onclick="FilterCompleted()"
+                                class="list-group-item list-group-item-action bg-dark text-white">
+                                <span class="menu-collapsed"><i class="fa fa-1x fa-check" style="color: green;"> </i>
+                                    Completed</span>
+                            </a>
+                        </div>
+                    </ul>
+                    <!-- List Group END-->
+                </div>
+                <!-- sidebar-container END -->
+
+                <!-- MAIN -->
+                <div class="col py-3">
+
+                    <div class="row">
+
+                        <div class="col-8 offset-1 py-3 text-center" style="margin-bottom:60px">
+
+
+                            <div class="card border-0">
+
+                                <h1 class="card-header bg-white">
+                                    CURRENT TASKS <span id="nTasks"></span>
+                                </h1>
+
+                                <div class="card-body">
+                                    <div class="btn-group d-flex " role="group" aria-label="...">
+
+                                        <button type="button" class="btn btn-secondary w-100 m-1" data-toggle="modal"
+                                            data-target="#addTask">
+                                            CREATE TASK
+                                        </button>
+                                        <button type="button" class="btn btn-secondary w-100 m-1"
+                                            onclick="clearTasks()">
+                                            CLEAR TASKS
+                                        </button>
+                                    </div>
+                                    <br>
+                                    <table class="table table-striped" id="taskListTable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Created</th>
+                                                <th>Due Date</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="resultsBody">
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <!-- Main Col END -->
+
+
+                    </div>
+                </div>
+                <!-- Main Col END -->
+
+            </div>
+        </div>
+
+        <template id="Data-Template">
+            <tr>
+                <td class="d-none"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td data-id="">
+                    <a onclick="completeTask(this)" class="btn btn-sm btn-out btn-outline-warning border-0"><i
+                            class="fa fa-2x fa-check-square-o" style="color: green;"></i></a>
+                    <a onclick=" editTaskShow(this)" class="btn btn-sm btn-outline-danger border-0"><i
+                            class="fa fa-2x fa-pencil-square-o" style="color: blue;"></i></a>
+                    <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-success border-0"><i
+                            class="fa fa-2x fa-trash-o" style="color: red;"></i></a>
+                </td>
+            </tr>
+        </template>
+        <div class="modal" id="addTask">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Task</h4>
+                        <hr>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="newEventForm">
+                            <div class="form-group">
+                                <label for="newTaskTitle">Title</label>
+                                <input type="text" class="form-control" id="newTaskTitle" name="newTaskTitle"
+                                    placeholder="Task Title" value="Visual Studio Install" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newDueDate">Due Date</label>
+                                <input type="date" class="form-control" id="newDueDate" name="newDueDate"
+                                    placeholder="Date" required>
+                            </div>
+                            <button type="submit" class="btn mb-2" data-dismiss="modal"
+                                style="background-color: #ff993b;" onclick="createTask()">Submit</button>
+                        </form>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="editTask">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Task</h4>
+                        <hr>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="oldEventForm">
+                            <input type="hidden" name="oldUUID" id="oldUUID">
+                            <input type="hidden" name="oldCompletedStr" id="oldCompletedStr">
+                            <div class="form-group">
+                                <label for="oldTaskTitle">Title</label>
+                                <input type="text" class="form-control" id="oldTaskTitle" name="newTaskTitle"
+                                    placeholder="Task Title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="oldDueDate">Due Date</label>
+                                <input type="date" class="form-control" id="oldDueDate" name="newDueDate"
+                                    placeholder="Date" required>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="oldCompleted"
+                                    name="newCompleted" value="completed">
+                                <label class="form-check-label" for="oldCompleted">
+                                    Completed
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <br>
+                                <button type="submit" class="btn mb-2" data-dismiss="modal"
+                                    style="background-color: #ff993b;" onclick="editTask(this)">Submit</button>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 text-muted">&copy; Young Jung 2021</div>
+                    <div class="col-lg-9 col-md-6 col-sm-6 text-muted" style="font-size:0.7rem;text-align: right;">
+                        Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a>
+                        from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                        Photo by Suzy Hazelwood from Pexels
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- body-row END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="/js/TopNav_StickySide_SitckyFooter.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>
