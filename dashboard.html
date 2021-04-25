@@ -109,20 +109,23 @@
                         <!-- Submenu content -->
                         <div id="submenu1" class="collapse sidebar-submenu">
                             <a href="javascript:void(0)" onclick="FilterIncomplete()"
-                                class="list-group-item list-group-item-action bg-dark text-white">
+                                class="list-group-item list-group-item-action bg-dark text-white" data-toggle="tooltip"
+                                data-placement="right" title="Incomplete Tasks">
                                 <span class="menu-collapsed"><i class="fa fa-1x fa-close" style="color: yellow;">
                                     </i>
                                     Incomplete</span>
                             </a>
                             <a href="javascript:void(0)" onclick="FilterOverDue()"
-                                class="list-group-item list-group-item-action bg-dark text-white">
+                                class="list-group-item list-group-item-action bg-dark text-white" data-toggle="tooltip"
+                                data-placement="right" title="Overdule Tasks">
                                 <span class="menu-collapsed"><i class="fa fa-1x fa-calendar-times-o"
                                         style="color: red;">
                                     </i>
                                     Overdue</span>
                             </a>
                             <a href="javascript:void(0)" onclick="FilterCompleted()"
-                                class="list-group-item list-group-item-action bg-dark text-white">
+                                class="list-group-item list-group-item-action bg-dark text-white" data-toggle="tooltip"
+                                data-placement="right" title="Completed Tasks">
                                 <span class="menu-collapsed"><i class="fa fa-1x fa-check" style="color: green;"> </i>
                                     Completed</span>
                             </a>
@@ -198,12 +201,15 @@
                 <td></td>
                 <td></td>
                 <td data-id="">
-                    <a onclick="completeTask(this)" class="btn btn-sm btn-out btn-outline-warning border-0"><i
+                    <a onclick="completeTask(this)" class="btn btn-sm btn-out btn-outline-warning border-0"
+                        data-toggle="tooltip" data-placement="left" title="Mark Task Completed"><i
                             class="fa fa-2x fa-check-square-o" style="color: green;"></i></a>
-                    <a onclick=" editTaskShow(this)" class="btn btn-sm btn-outline-danger border-0"><i
+                    <a onclick=" editTaskShow(this)" class="btn btn-sm btn-outline-danger border-0"
+                        data-toggle="tooltip" data-placement="left" title="Edit Task"><i
                             class="fa fa-2x fa-pencil-square-o" style="color: blue;"></i></a>
-                    <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-success border-0"><i
-                            class="fa fa-2x fa-trash-o" style="color: red;"></i></a>
+                    <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-success border-0" data-toggle="tooltip"
+                        data-placement="right" title="Delete Task"><i class="fa fa-2x fa-trash-o"
+                            style="color: red;"></i></a>
                 </td>
             </tr>
         </template>
